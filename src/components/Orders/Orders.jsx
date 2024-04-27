@@ -1,19 +1,14 @@
 import { useState } from "react";
+import Modal from "../Modal/Modal";
 
 const Orders = ({ totalPrice }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const modalHandler = () => {
-    setIsModalOpen(true);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleOpen = () => {
+    setIsOpen(!isOpen);
   };
   return (
     <>
-      <div
-        className={`purchase-successful-modal ${
-          isModalOpen ? "showModal" : "hideModal"
-        }`}
-      >
-        hi
-      </div>
       <section
         className="check-out-section animate__animated animate__zoomIn"
         dir="rtl"
@@ -63,10 +58,11 @@ const Orders = ({ totalPrice }) => {
           </section>
           <button
             className="check-out-purchase-btn cursor-pointer icon-active"
-            onClick={modalHandler}
+            onClick={toggleOpen}
           >
             ثبت سفارش
           </button>
+          <Modal isOpen={isOpen} toggleOpen={toggleOpen} />
         </section>
       </section>
     </>
